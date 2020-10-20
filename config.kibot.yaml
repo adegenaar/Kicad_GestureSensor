@@ -215,25 +215,25 @@ outputs:
   # KiBoM (KiCad Bill of Materials):
   # For more information: https://github.com/INTI-CMNB/KiBoM
   # This output is what you get from the 'Tools/Generate Bill of Materials' menu in eeschema.
-  - name: 'kibom'
-    comment: 'kibom xlsx'
-    type: 'kibom'
-    dir: 'docs/BOM'
-    options:
-      conf:
-        exclude_any:
-          - column: Part
-            regex: TestPoint
-          - column: Part
-            regex: LOGO
-          - column: Part
-            regex: Jumper
-      # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
-      format: 'XLSX'
-      # [number=1] Number of boards to build (components multiplier)
-      number: 1
-      # [string='%f-%i.%x'] filename for the output (%i=bom). Affected by global options
-      output: '%f.%x'
+  # - name: 'kibom'
+  #   comment: 'kibom xlsx'
+  #   type: 'kibom'
+  #   dir: 'docs/BOM'
+  #   options:
+  #     conf:
+  #       exclude_any:
+  #         - column: Part
+  #           regex: TestPoint
+  #         - column: Part
+  #           regex: LOGO
+  #         - column: Part
+  #           regex: Jumper
+  #     # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
+  #     format: 'XLSX'
+  #     # [number=1] Number of boards to build (components multiplier)
+  #     number: 1
+  #     # [string='%f-%i.%x'] filename for the output (%i=bom). Affected by global options
+  #     output: '%f.%x'
 
   # KiBoM (KiCad Bill of Materials):
   # For more information: https://github.com/INTI-CMNB/KiBoM
