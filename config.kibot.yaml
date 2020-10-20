@@ -1,25 +1,25 @@
 kiplot:
   version: 1
 
-preflight:
-  update_xml: true
-  run_erc: true
-  run_drc: true
-  check_zone_fills: true
-  filters:
-    - filter_msg: 'Pin connected to other pins, but not driven by any pin'
-      error_number: 3
-      regexp:  '(Power input) of component'
-    - filter_msg: 'Conflict problem between pins. Severity: error'
-      error_number: 5
-      regexp:  'Conflict problem between pins'
-    - filter_msg: 'Courtyards overlap'
-      error_number: 45
-      regexp:  'Courtyards overlap'
-    - filter_msg: 'Footprint has no courtyard defined'
-      error_number: 46
-      regexp:  'Footprint LOGO'
-  ignore_unconnected: false
+# preflight:
+#   update_xml: true
+#   run_erc: true
+#   run_drc: true
+#   check_zone_fills: true
+#   filters:
+#     - filter_msg: 'Pin connected to other pins, but not driven by any pin'
+#       error_number: 3
+#       regexp:  '(Power input) of component'
+#     - filter_msg: 'Conflict problem between pins. Severity: error'
+#       error_number: 5
+#       regexp:  'Conflict problem between pins'
+#     - filter_msg: 'Courtyards overlap'
+#       error_number: 45
+#       regexp:  'Courtyards overlap'
+#     - filter_msg: 'Footprint has no courtyard defined'
+#       error_number: 46
+#       regexp:  'Footprint LOGO'
+#   ignore_unconnected: false
 
 outputs:
   - name: "gerber files"
@@ -43,6 +43,7 @@ outputs:
       create_gerber_job_file: false
       use_gerber_x2_attributes: true
       use_gerber_net_attributes: false
+      output: '%f_%i.%x'
     layers:
       - 'all'
 
@@ -168,6 +169,7 @@ outputs:
     type: pdf_pcb_print
     layers:
       - 'user'
+      - layer: Edge.Cuts
       - layer: F.CrtYd
       - layer: F.Fab
     dir: docs
@@ -190,13 +192,13 @@ outputs:
     type: 'ibom'
     dir: docs/BOM
     options:
-      dark_mode: false
+      dark_mode: true
       hide_pads: false
       show_fabrication: true
       hide_silkscreen: false    
       highlight_pin1: true
       no_redraw_on_drag: false
-      board_rotation: 90
+      board_rotation: 0
       checkboxes: 'Sourced,Placed'
       include_tracks: true
       include_nets: true
@@ -207,8 +209,8 @@ outputs:
 #      extra_fields: 'EF'
       normalize_field_case: true
       dnp_field: 'DNP'
-      name_format: ''
-      output: '%f.%x'
+      name_format: '%f_iBoM'
+      output: ''
 
   # KiBoM (KiCad Bill of Materials):
   # For more information: https://github.com/INTI-CMNB/KiBoM
@@ -226,8 +228,6 @@ outputs:
             regex: LOGO
           - column: Part
             regex: Jumper
-          - column: Value
-            regex: Sparkfun_Pro_Micro
       # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
       format: 'XLSX'
       # [number=1] Number of boards to build (components multiplier)
@@ -252,8 +252,6 @@ outputs:
             regex: LOGO
           - column: Part
             regex: Jumper
-          - column: Value
-            regex: Sparkfun_Pro_Micro
       # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
       format: 'CSV'
       # [number=1] Number of boards to build (components multiplier)
@@ -280,8 +278,6 @@ outputs:
             regex: LOGO
           - column: Part
             regex: Jumper
-          - column: Value
-            regex: Sparkfun_Pro_Micro
       # [string='HTML'] [HTML,CSV,XML,XLSX] format for the BoM
       format: 'CSV'
       # [number=1] Number of boards to build (components multiplier)
