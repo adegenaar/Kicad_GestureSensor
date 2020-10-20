@@ -49,12 +49,6 @@ jobs:
           name: docs
           path: docs
 
-      - name: upload gerbers
-        uses: actions/upload-artifact@v2
-        with:
-          name: gerbers
-          path: gerbers
-
       # - name: git commit && git push 
       #   uses: github-actions-x/commit@v2.7
       #   with:
