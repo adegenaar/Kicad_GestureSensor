@@ -67,4 +67,4 @@ jobs:
           name: kicad-exports
           rebase: 'true'
 #          files: ${{ steps.branch.outputs.current }}/docs/* ${{ steps.branch.outputs.current }}/gerbers/*
-          files: main/docs/* main/gerbers/*
+          files: docs/* gerbers/*
